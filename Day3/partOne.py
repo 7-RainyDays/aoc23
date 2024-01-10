@@ -1,4 +1,3 @@
-
 def find_number(matrix):
     solution = 0
     global rows
@@ -9,20 +8,20 @@ def find_number(matrix):
     i = 0
 
     while i < rows:
-        for j in range(0, cols):
-            current_number = ""
+        j = 0
+        while j < cols:
             if matrix[i][j].isnumeric():
                 current_number = matrix[i][j]
-                k = j + 1
+                k = j +1
                 while k < cols and matrix[i][k].isdigit():
                     current_number += matrix[i][k]
                     k += 1
                 if is_part_number(matrix, i, j, current_number):
                     solution += int(current_number)
-                    print(current_number)
+                j = k
+            else:
+                j += 1
         i += 1
-        if i >= rows:
-            break
     return solution
 
 
