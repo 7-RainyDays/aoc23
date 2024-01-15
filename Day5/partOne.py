@@ -21,7 +21,7 @@ with open('input.txt', 'r') as f:
             result.append(mapped)
         print(result)
 
-dawdawdasdawdaw
+
         #seeds = [x if x not in range(source_r, max_r) else (x - source_r + maps[i][0]) for x in seeds]
 
 
