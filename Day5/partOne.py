@@ -16,8 +16,6 @@ with open('input.txt', 'r') as f:
     if current_group:
         maps.append(current_group)
 
-    print(maps)
-
     for i in range(len(maps)):
         for k in range(len(seeds)):
             for j in range(len(maps[i])):

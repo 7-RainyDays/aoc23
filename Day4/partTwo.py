@@ -25,12 +25,8 @@ with open('input.txt', 'r') as f:
         winning_numbers = [number for number in card[0].split(" ")]
         elf_numbers = [number for number in card[1].split(" ")]
 
-        #extract the winning value of each card
         card = [number for number in winning_numbers if number in elf_numbers]
         card_values.append(len(card))
-
-    #translate the input to [[card_amount, winning_number] , ..]
-    # [[1, 10], [1, 10], [1, 1], [1, 1], [1, 2], [1, 3], [1, 10]]
 
     arr = [list(a) for a in zip([1] * 196, card_values)]
 
