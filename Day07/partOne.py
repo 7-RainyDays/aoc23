@@ -28,5 +28,3 @@ with open('input.txt', 'r') as f:
         score += d[combined_list[i]] * (len(combined_list)-i)
 
     print(score)
-
-    248113761
