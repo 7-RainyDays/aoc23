@@ -23,16 +23,18 @@ with open('input.txt', 'r') as f:
             Five_ok.append(element)
 
         #search for full house
-        elif any(element.count(x) == 3 for x in element) and any(element.count(x) == 2 for x in element) and "J" in element:
-            Five_ok.append(element)
-        elif any(element.count(x) == 3 for x in element) and any(element.count(x) == 2 for x in element) and "J" not in element:
-            Full_house.append(element)
+        elif any(element.count(x) == 3 for x in element) and any(element.count(x) == 2 for x in element):
+            if "J" in element:
+                Five_ok.append(element)
+            else:
+                Full_house.append(element)
 
         #search for three of a kind
-        elif any(element.count(x) == 3 and len(set(element)) == 3 for x in element) and "J" not in element:
-            Three_ok.append(element)
-        elif any(element.count(x) == 3 and len(set(element)) == 3 for x in element) and "J" in element:
-            Four_ok.append(element)
+        elif any(element.count(x) == 3 and len(set(element)) == 3 for x in element):
+            if "J" not in element:
+                Three_ok.append(element)
+            else:
+                Four_ok.append(element)
 
         #search for two pair
         elif len(set(element)) == 3 and any(element.count(x) == 2 for x in element):
@@ -45,10 +47,11 @@ with open('input.txt', 'r') as f:
                     Full_house.append(element)
 
         #search for one pair
-        elif len(set(element)) == 4 and "J" not in element:
-            One_pair.append(element)
-        elif len(set(element)) == 4 and "J" in element:
-            Three_ok.append(element)
+        elif len(set(element)) == 4:
+            if "J" not in element:
+                One_pair.append(element)
+            else:
+                Three_ok.append(element)
 
         #search for high card
         elif len(set(element)) == 5:
@@ -59,18 +62,16 @@ with open('input.txt', 'r') as f:
         else:
             print("could not assign:", element)
 
-    Five_ok = sorted(Five_ok, key=sort_pack, reverse=True)
-    Four_ok = sorted(Four_ok, key=sort_pack, reverse=True)
-    Full_house = sorted(Full_house, key=sort_pack, reverse=True)
-    Three_ok = sorted(Three_ok, key=sort_pack, reverse=True)
-    Two_pair = sorted(Two_pair, key=sort_pack, reverse=True)
-    One_pair = sorted(One_pair, key=sort_pack, reverse=True)
-    High_card = sorted(High_card, key=sort_pack, reverse=True)
+    all_poker_hands = [Five_ok, Four_ok, Full_house, Three_ok, Two_pair, One_pair, High_card]
+    sorted_hands = [sorted(poker_hand, key=sort_pack, reverse=True) for poker_hand in all_poker_hands]
 
-    combined_list = Five_ok + Four_ok + Full_house + Three_ok + Two_pair + One_pair + High_card
-
+    combined_list = []
+    for poker_hand in sorted_hands:
+        combined_list.extend(poker_hand)
 
     for i in range(len(combined_list)):
         score += d[combined_list[i]] * (len(combined_list)-i)
 
     print(score)
+
+246285222
